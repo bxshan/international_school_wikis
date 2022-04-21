@@ -7,4 +7,4 @@ Background:
 
 Goals:
 - My goal is to improve and change the information in the articles so that they are more updated and less phrased as an advertisement.
-- I will start in ISB, then expand to other international schools in Beijing, such as DCB, WAB, BIBA, and many more. 
+- I will start in ISB, then expand to other international schools in Beijing, such as DCB, WAB, BIBA, and many more.
