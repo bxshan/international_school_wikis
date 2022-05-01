@@ -1,14 +1,8 @@
 #!/usr/bin/python3
 
-"""
-    get_pages_revisions.py
+# returns latest revisions to a specific wikipedia article
+# followed example from: https://www.mediawiki.org/wiki/API:Revisions#Python
 
-    MediaWiki API Demos
-    Demo of `Revisions` module: Get revision data with content for pages
-    with titles [[API]] and [[Main Page]]
-
-    MIT License
-"""
 
 import requests
 from datetime import date
