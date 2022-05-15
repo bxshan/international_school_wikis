@@ -3,9 +3,8 @@
 # returns latest revisions to a specific wikipedia article
 # followed example from: https://www.mediawiki.org/wiki/API:Revisions#Python
 
-
-import requests
 from datetime import date
+import requests
 
 S = requests.Session()
 
@@ -18,7 +17,7 @@ PARAMS = {
     "rvprop": "timestamp|user|comment",
     "rvslots": "main",
     "rvlimit": "5",
-    "rvstart": " ",
+    "rvstart": "",
     "rvend": "2022-01-01T00:00:00Z",
     "formatversion": "2",
     "format": "json"
@@ -34,4 +33,8 @@ DATA = R.json()
 PAGES = DATA["query"]["pages"]
 
 for page in PAGES:
-    print(page["revisions"])
+    for revision in page["revisions"]:
+        print("User: ", revision["user"])
+        print("Time: ", revision["timestamp"])
+        print("Comment: ", revision["comment"])
+        print("")
