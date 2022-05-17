@@ -25,11 +25,13 @@ pageviews_per_week = {}
 for page in PAGES:
     date_keys = page["pageviews"].keys()
     for date_key in date_keys:
+        year_number = datetime.fromisoformat(date_key).isocalendar()[0]
         week_number = datetime.fromisoformat(date_key).isocalendar()[1]
-        if week_number in pageviews_per_week:
-            pageviews_per_week[week_number] += page["pageviews"][date_key]
+        index = str(year_number) + "-" + str(week_number)
+        if index in pageviews_per_week:
+            pageviews_per_week[index] += page["pageviews"][date_key]
         else:
-            pageviews_per_week[week_number] = page["pageviews"][date_key]
+            pageviews_per_week[index] = page["pageviews"][date_key]
 
-for week in pageviews_per_week.keys():
-    print("Week: ", week, "Pageviews: ", pageviews_per_week[week])
+for index in pageviews_per_week.keys():
+    print("Week: ", index, "Pageviews: ", pageviews_per_week[index])
