@@ -9,5 +9,5 @@ for school in school_list:
     get_languages(school[0])
     print ("    Latest revisions: ")
     get_last_revisions(school[0], False)
-    print("    Pageviews: ")
+    print ("    Pageviews: ")
     get_pageviews(school[0])
