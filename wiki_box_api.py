@@ -20,13 +20,12 @@ def get_languages(title: str):
     for key in PAGES.keys():
         page = PAGES[key]
         page_title = page["title"]
-        for item in page["langlinks"]:
-            languages.append(item["lang"])
+        if "langlinks" in page:
+            for item in page["langlinks"]:
+                languages.append(item["lang"])
 
         # print("        Title: \"" + page_title + "\"")
         print("        Languages: ", languages)
-
-        return(languages)
 
 
 def get_last_revisions(title: str, print_mode: bool):
@@ -66,17 +65,20 @@ def get_last_revisions(title: str, print_mode: bool):
     else:
         revisions_per_week = {}
         for page in PAGES:
-            for revision in page["revisions"]:
-                date_key = revision["timestamp"]
-                date_key = date_key[0:-1]
-                year_number = datetime.fromisoformat(date_key).isocalendar()[0]
-                week_number = datetime.fromisoformat(date_key).isocalendar()[1]
-                index = str(year_number) + "-" + str(week_number)
-                if index in revisions_per_week:
-                    revisions_per_week[index] += 1
-                else:
-                    revisions_per_week[index] = 1
-
+            if "revisions" in page:
+                for revision in page["revisions"]:
+                    date_key = revision["timestamp"]
+                    date_key = date_key[0:-1]
+                    year_number = datetime.fromisoformat(date_key).isocalendar()[0]
+                    week_number = datetime.fromisoformat(date_key).isocalendar()[1]
+                    index = str(year_number) + "-" + str(week_number)
+                    if index in revisions_per_week:
+                        revisions_per_week[index] += 1
+                    else:
+                        revisions_per_week[index] = 1
+            else:
+                print("        No Revisions")
+                return
 
         for index in revisions_per_week.keys():
             print("        Week: ", index, "Revisions: ", revisions_per_week[index])
